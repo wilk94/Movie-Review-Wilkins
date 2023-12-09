@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MovieReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('reviews.index');
 });
+
+Route::get('/reviews', [MovieReviewController::class, 'index'])->name('reviews.index');
+Route::get('/reviews/create', [MovieReviewController::class, 'create'])->name('reviews.create');
+Route::post('/reviews', [MovieReviewController::class, 'store'])->name('reviews.store');
+
